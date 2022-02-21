@@ -47,24 +47,7 @@ $ docker-compose up -d
 # you can also manually set this env var to your IP if needed
 $ MY_IP=$(ipconfig getifaddr en0);
 
-$ docker run \
-    --net=chapter-12_default \
-    -p 1099:1099  \
-    -v "$(pwd)/ksqldb":/ksqldb \
-    -e KSQL_JMX_OPTS="\
-        -Dcom.sun.management.jmxremote \
-        -Djava.rmi.server.hostname=$MY_IP \
-        -Dcom.sun.management.jmxremote.port=1099 \
-        -Dcom.sun.management.jmxremote.rmi.port=1099 \
-        -Dcom.sun.management.jmxremote.authenticate=false \
-        -Dcom.sun.management.jmxremote.ssl=false" \
-    -ti confluentinc/ksqldb-server:0.14.0  \
-    ksql-server-start /ksqldb/config/server.properties
-```
 
-In another tab, start `jconsole`:
-
-```sh
 $ MY_IP=$(ipconfig getifaddr en0);
 
 $ jconsole $MY_IP:1099

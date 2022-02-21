@@ -14,6 +14,10 @@ public class TopologyBench {
   public static class MyState {
     public TestInputTopic<Void, String> inputTopic;
 
+    /*
+     * @Setup : this method shold be executed before the benchmark
+     * Level.Trial : this methd should be executed before each run of the benchmark
+     */
     @Setup(Level.Trial)
     public void setupState() {
       Properties props = new Properties();
@@ -36,6 +40,11 @@ public class TopologyBench {
     }
   }
 
+  /*
+   * @Benchmark : signals JMH taht this is the benchmark method
+   * Throughput, Seconds : this will measure the number of times per second
+   * this bench market could be executed
+   */
   @Benchmark
   @BenchmarkMode(Mode.Throughput)
   @OutputTimeUnit(TimeUnit.SECONDS)

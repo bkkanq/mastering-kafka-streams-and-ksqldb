@@ -19,6 +19,11 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 class GreeterTopologyTest {
+  /*
+   * TestDriver
+   * 1. Kafa Streams topology(GreeterTopology)에 data를 pipe할 수 있도록 함
+   * 2. output topic에 추가된 결과 data를 분석할수 있도록 함
+   */
   private TopologyTestDriver testDriver;
   private TestInputTopic<Void, String> inputTopic;
   private TestOutputTopic<Void, String> outputTopic;
@@ -62,7 +67,12 @@ class GreeterTopologyTest {
 
     assertThat(outputTopic.isEmpty()).isFalse();
 
-    // save each record that appeared in the output topic to a list
+    /*
+     * save each record that appeared in the output topic to a list
+     * outputTopic.readRecordsToList() is working with streams
+     *   since it contains the entire sequence of output events.
+     * outputTOpic.readKeyValuesToMap() is useful when working with table as opposed to stream
+     */
     List<TestRecord<Void, String>> outRecords = outputTopic.readRecordsToList();
 
     // ensure the output topic contains exactly one record

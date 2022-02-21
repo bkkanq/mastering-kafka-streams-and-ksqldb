@@ -35,7 +35,7 @@ task downloadPrometheusExporter(type: Download) {
 
 jib {
   to {
-    image = 'magicalpipelines/myapp:0.1.0'
+    image = 'bkkanq/myapp:0.1.0'
   }
   extraDirectories.paths = ['files']
   container {
@@ -53,7 +53,7 @@ jib {
        * Java agent. Agent mode is suitable if you don't have any custom
        * metrics that you want to instrument in your Kafka Streams app.
        */
-      //'-javaagent:./jmx_prometheus_javaagent.jar=8080:jmx_prometheus_exporter.yaml',
+      '-javaagent:./jmx_prometheus_javaagent.jar=8080:jmx_prometheus_exporter.yaml',
     ]
     mainClass = application.mainClassName
     ports = ['8080', '9010']

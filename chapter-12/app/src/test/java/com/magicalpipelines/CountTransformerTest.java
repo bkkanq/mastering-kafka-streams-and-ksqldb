@@ -12,6 +12,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class CountTransformerTest {
+  /*
+   * 직접 topolgy를 running하지 않고도 state등에 접근 가능
+   */
   MockProcessorContext processorContext;
 
   @BeforeEach
